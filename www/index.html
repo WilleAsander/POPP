@@ -6,18 +6,21 @@
     <title>POPP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="../main.js"></script>
+    <script src="main.js"></script>
 </head>
 <body>
-    <div id="screen">
-         
-        <form method="POST" action="/add">
-            <label>Enter the item</label><br>
-            <input type="text" name="name" placeholder="Enter name of product" required>
-            <input type="text" name="price" placeholder="Enter price of product" required>
-            <input type="submit" value="submit">
-        </form>
+<div id="kvack"></div>
+    <script>
+            var xhr = new XMLHttpRequest();
 
-    </div>
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            document.getElementById('kvack').innerHTML = this.responseText;
+        }
+    };
+
+    xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/', true);
+    xhr.send();
+    </script>
 </body>
 </html>
