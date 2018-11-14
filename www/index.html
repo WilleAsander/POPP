@@ -9,21 +9,16 @@
     <script src="main.js"></script>
 </head>
 <body>
-<div id="kvack"></div>
-<<<<<<< HEAD
-    <script>
-        var xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4) {
-            document.getElementById('kvack').innerHTML = this.responseText;
-            }
-        };
+<div id="kvack"></div> 
+        <h1>Into to Node and MongoDB</h1>
+        <form method="POST" action="/products/create">
+          <label>Enter the item</label><br>
+          <input type="text" name="name" placeholder="Enter name of product" required>
+          <input type="text" name="price" placeholder="Enter price of product" required>
+          <input type="submit" value="submit">
+        </form>
 
-        xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/', true);
-        xhr.send();
-    </script>
-=======
->>>>>>> f422c22f0ea8bf7e9f4f01a6075e27ea92be4975
+
 </body>
 </html>

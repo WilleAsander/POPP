@@ -36,3 +36,12 @@ exports.update = function(req,res){
       res.send('Product REMOVED BY FORCE');
     });
   };
+
+  app.post('/create', function(req,res){
+    db.collection('product').save(req.body),function(err,result){
+      if (err) return console.log(err)
+  
+      console.log('Added to database')
+  
+    }
+    });
