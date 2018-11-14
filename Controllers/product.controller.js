@@ -11,14 +11,18 @@ exports.create = function(req,res){
         if (error){
             return next(error);
         }
-        res.send('Product created, check mLab DB');
+        res.send('Product created!');
     });
+
+
+
 }
 
 exports.list = function(req,res){
      Product.find(function(err, product){
          if (err) return next(err);
-         res.send(product);
+
+        res.send(product);
      });
 };
 
