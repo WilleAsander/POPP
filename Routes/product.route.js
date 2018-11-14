@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var controller = require('../Controllers/product.controller');
+var product_controller = require('../Controllers/product.controller');
 
 router.post('/create', product_controller.create);
 router.get('/:id', product_controller.details);
