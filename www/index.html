@@ -45,7 +45,7 @@
                 var i;
                 for(i = 0; i < arr.length; i++){
                     out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td> </tr>'
-                    +" "+'<td> <form method="DELETE" action="/products/'+ arr[i]._id+'/delete"><input type="submit" value="Delete"></form>';
+                    +" "+'<td> <form method="DELETE" action="/products/'+ arr[i]._id+'/delete"><button type="submit" value="Delete"></form>';
                 }
                 document.getElementById("table").innerHTML += out;
             }  
