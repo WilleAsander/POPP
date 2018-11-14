@@ -13,7 +13,7 @@ exports.create = function(req,res){
         if (error){
             return next(error);
         }
-        res.send('Product created!');
+        res.redirect('/');
     });
 
 
