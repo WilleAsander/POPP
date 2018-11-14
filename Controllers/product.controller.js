@@ -1,4 +1,4 @@
-var Product = require('../models/model');
+var Product = require('../Models/product.model');
 exports.create = function(req,res){
     var product = new Product({
         name: req.body.name,
@@ -14,6 +14,13 @@ exports.create = function(req,res){
         res.send('Product created, check mLab DB');
     });
 }
+
+exports.list = function(req,res){
+     Product.find(function(err, product){
+         if (err) return next(err);
+         res.send(product);
+     });
+};
 
 exports.details = function(req,res){
     Product.findById(req.params.id, function(err, product){
@@ -36,12 +43,3 @@ exports.update = function(req,res){
       res.send('Product REMOVED BY FORCE');
     });
   };
-
-  app.post('/create', function(req,res){
-    db.collection('product').save(req.body),function(err,result){
-      if (err) return console.log(err)
-  
-      console.log('Added to database')
-  
-    }
-    });
