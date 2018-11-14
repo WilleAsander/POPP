@@ -44,7 +44,8 @@
                 var out = "";
                 var i;
                 for(i = 0; i < arr.length; i++){
-                    out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td> </tr>';
+                    out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td> </tr>'
+                    +" "+'<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i].$oid+'"/delete"/>';
                 }
                 document.getElementById("table").innerHTML += out;
             }  
