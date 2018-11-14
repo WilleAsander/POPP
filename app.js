@@ -4,11 +4,9 @@ var app = express();
 
 var PORT = process.env.PORT || 4242;
 
-var controll = require('./Controllers/controller');
+var home = require('./Routes/home.router');
 
-app.get('/', function(req, res){
-    res.sendFile(__dirname + '/www/index.html');
-});
+app.use('/', home);
 
 app.listen(PORT, function(){
     console.log('Server up and running');
