@@ -1,4 +1,5 @@
-    var xhr = new XMLHttpRequest();
+   //Skriver text i index.html
+   var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4) {
@@ -8,3 +9,6 @@
 
     xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/hello', true);
     xhr.send();
+
+
+    
