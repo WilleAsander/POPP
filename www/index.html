@@ -25,6 +25,7 @@
             <tr>
                 <th>Name</th>
                 <th>Price</th>
+                <th></th>
             </tr>
             
         </table>
@@ -45,7 +46,7 @@
                 var i;
                 for(i = 0; i < arr.length; i++){
                     out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td> </tr>'
-                    +" "+'<td> <form method="DELETE" action="/products/'+ arr[i]._id+'/delete"><button type="submit" value="Delete"></form>';
+                    +" "+'<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'/delete">Details</a>';
                 }
                 document.getElementById("table").innerHTML += out;
             }  
