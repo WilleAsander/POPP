@@ -20,8 +20,35 @@
           <input type="submit" value="submit">
         </form>
 
-        <div id="infobox">
+    <div id="listBox">
+        <table id="table">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
             
-        </div>
+        </table>
+        <script>
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    var myArr = JSON.parse(this.responseText);
+                    myFunction(myArr)
+                }
+            };
+
+            xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
+            xhr.send(); 
+            function myFunction(arr){
+                var out = "";
+                var i;
+                for(i = 0; i < arr.length; i++){
+                    out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td> </tr>';
+                }
+                document.getElementById("table").innerHTML = out;
+            }  
+        </script>
+    </div>
 </body>
 </html>
