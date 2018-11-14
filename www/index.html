@@ -10,17 +10,5 @@
 </head>
 <body>
 <div id="kvack"></div>
-    <script>
-            var xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            document.getElementById('kvack').innerHTML = this.responseText;
-        }
-    };
-
-    xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/hello', true);
-    xhr.send();
-    </script>
 </body>
 </html>
