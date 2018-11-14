@@ -2,7 +2,9 @@ var Product = require('../Models/product.model');
 exports.create = function(req,res){
     var product = new Product({
         name: req.body.name,
-        price: req.body.price
+        description: req.body.description,
+        category: req.body.category,
+        price: req.body.price,
     });
 
     
@@ -47,3 +49,6 @@ exports.update = function(req,res){
       res.send('Product REMOVED BY FORCE');
     });
   };
+
+
+
