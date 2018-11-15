@@ -1,11 +1,11 @@
 var express = require('express');
-var app = express();
 var bodyParser = require('body-parser');
-var PORT = process.env.PORT || 4242;
+var mongoose = require('mongoose');
 var product = require('./Routes/product.route');
 var home = require('./Routes/home.router');
+var PORT = process.env.PORT || 4242;
+var app = express();
 
-var mongoose = require('mongoose');
 var db_url = 'mongodb://dbAdmin:passw0rd@ds163103.mlab.com:63103/te4-popp';
 mongoose.connect(db_url, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
