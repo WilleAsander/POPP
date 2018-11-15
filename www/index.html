@@ -29,7 +29,14 @@
         </form>
     </div>
     <div id="productInfo">
-
+        <table id="productTable">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Description</th>
+            </tr>
+        </table>
     </div>
         <script>
             function loadList(){
@@ -65,8 +72,13 @@
                 xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function(){
                     if(this.readyState == 4){
+                        var row = $("<tr />");
                         var productInformation = JSON.parse(this.responseText);
-                        document.getElementById("productInfo").innerHTML = productInformation.name;
+                        $("#personDataTable").append(row);
+                        row.append($("<td>" + productInformation.name + "</td>"));
+                        row.append($("<td>" + productInformation.price + "</td>"));
+                        row.append($("<td>" + productInformation.description + "</td>"));
+                        row.append($("<td>" + productInformation.category + "</td>"));
 
                     }
                 };
