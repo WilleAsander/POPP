@@ -37,7 +37,8 @@
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     var myArr = JSON.parse(this.responseText);
-                    myFunction(myArr)
+                    myFunction(myArr);
+                    deleteFunction(myArr);
                 }
             };
 
@@ -53,12 +54,6 @@
                 document.getElementById("table").innerHTML += out;
             }
             xhr.abort();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4) {
-                    var myArr = JSON.parse(this.responseText);
-                    deleteFunction(myArr)
-                }
-            };
 
             xhr.open('DELETE', 'https://glacial-shore-82418.herokuapp.com/products/:id/delete', true);
             xhr.send(); 
