@@ -34,7 +34,6 @@
         </table>
         <script>
             var xhr = new XMLHttpRequest();
-            var id ="";
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     var myArr = JSON.parse(this.responseText);
@@ -53,15 +52,16 @@
                 }
                 document.getElementById("table").innerHTML += out;
             }
-            xhr.onreadystatechange = function(){
+            var newXhr = new XMLHttpRequest();
+            newXhr.onreadystatechange = function(){
                 if (this.readyState == 4){
                     var deleteArr = JSON.parse(this.responseText);
                     deleteButton(deleteArr)
                 }
 
             };
-            xhr.open('DELETE', 'https://glacial-shore-82418.herokuapp.com/products', true) 
-            xhr.send();
+            newXhr.open('DELETE', 'https://glacial-shore-82418.herokuapp.com/products', true) 
+            newXhr.send();
             function deleteButton(deletebutton){
                 var out = "";
                 var i;
