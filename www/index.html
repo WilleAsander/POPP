@@ -52,8 +52,7 @@
                 }
                 document.getElementById("table").innerHTML += out;
             }
-
-            let xhr = new XMLHttpRequest();
+            xhr.abort();
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     var myArr = JSON.parse(this.responseText);
