@@ -9,19 +9,18 @@
     <script type="application/javascript" src="main.js"></script>
 </head>
 <body>
-        <h1>Welcome! Insert info about product here.</h1>
-        <form method="POST" action="/products/create">
-          <label>Enter the item</label><br>
-          <input type="text" name="name" placeholder="Enter name of product" required>
-          <input type="text" name="description" placeholder="Enter product description" required>
-          <input type="text" name="category" placeholder="Enter product category" required>
-          <input type="number" name="price" placeholder="Enter price of product" required>
-          <input type="submit" value="submit">
+        <h1 id="billboard">Welcome! Insert info about product below</h1>
+        <form method="POST" action="/products/create" class="infoform">
+          <label class="infotext">Name:</label><input class="infoinput" type="text" name="name" placeholder="Enter name of product" required><br>
+          <label class="infotext">Description:</label><input class="infoinput" type="text" name="description" placeholder="Enter product description" required><br>
+          <label class="infotext">Category:</label> <input class="infoinput" type="text" name="category" placeholder="Enter product category" required><br>
+          <label class="infotext">Price:</label><input class="infoinput" type="number" name="price" placeholder="Enter price of product" required><br>
+          <input class="infotext"type="submit" value="submit">
         </form>
 
-    <div id="listBox">
+    <div id="listBox" class="infoform">
         <form action="">
-            <select id="list" name="products" onchange="showProduct(this.value)">
+            <select class="infotext" id="list" name="products" onchange="showProduct(this.value)">
             <option value="">Select a product...</option>
             </select>
             
