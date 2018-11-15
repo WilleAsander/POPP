@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>POPP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href='/style/main.css' />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/mains.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
 </head>
 <body>
     <div id="kvack"> </div> 
@@ -30,17 +29,10 @@
         </form>
     </div>
     <div id="productInfo">
-        <table id="productTable">
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Description</th>
-            </tr>
-        </table>
+        
     </div>
         <script>
-            /*function loadList(){
+            function loadList(){
                 var xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function() {
                     if (this.readyState == 4) {
@@ -66,6 +58,7 @@
             loadList();
             function showProduct(productID){
                 var xhr;
+                var txt;
                 if (productID == ""){
                     document.getElementById("productInfo").innerHTML = "Please select a product";
                     return;
@@ -73,22 +66,21 @@
                 xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function(){
                     if(this.readyState == 4){
-                        var row = $("<tr />");
                         var productInformation = JSON.parse(this.responseText);
-                        $("#personDataTable").append(row);
-                        row.append($("<td>" + productInformation.name + "</td>"));
-                        row.append($("<td>" + productInformation.price + "</td>"));
-                        row.append($("<td>" + productInformation.description + "</td>"));
-                        row.append($("<td>" + productInformation.category + "</td>"));
-
-                    }
+                        txt+= "<table border='1'><tr><th>Name</th><th>Price</th><th>Description</th><th>Category</th></tr>";
+                        txt+="<tr><td>"+productInformation.name+"</td><td>"+productInformation.price+"</td><td>"+productInformation.description+"</td><td>"+productInformation.category+"</td></tr>";
+                        txt+="</table>";
+                        
+                        document.getElementById("productInfo").innerHTML = txt;
                 };
                 xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products/'+productID, true);
                 xhr.send();
-
-
+                
+                
             }
-*/
+
+        };
+
         </script>
 </body>
 </html>
