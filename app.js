@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', home);
-app.use('/products', product);
+app.use('/products/', product);
 
 
 app.listen(PORT, function(){
