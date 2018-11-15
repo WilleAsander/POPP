@@ -38,29 +38,19 @@
                 if (this.readyState == 4) {
                     var myArr = JSON.parse(this.responseText);
                     myFunction(myArr);
-                    deleteFunction(myArr);
+                    //deleteFunction(myArr);
                 }
             };
 
-            xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
-            xhr.send(); 
+            
             function myFunction(arr){
+                xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
+                xhr.send(); 
                 var out = "";
                 var i;
                 for(i = 0; i < arr.length; i++){
                     out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td>'
                     +" "+'<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'">Details</a></tr>';
-                }
-                document.getElementById("table").innerHTML += out;
-            }
-
-            xhr.open('DELETE', 'https://glacial-shore-82418.herokuapp.com/products/:id/delete', true);
-            xhr.send(); 
-            function deleteFunction(arr){
-                var out = "";
-                var i;
-                for(i = 0; i < arr.length; i++){
-                    out += '<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'/delete">Details</a></td>';
                 }
                 document.getElementById("table").innerHTML += out;
             }
