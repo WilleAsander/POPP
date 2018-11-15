@@ -6,7 +6,16 @@
     <title>POPP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <script type="application/javascript" src="main.js"></script>
+    <style>
+            table,th,td {
+              border : 1px solid black;
+              border-collapse: collapse;
+            }
+            th,td {
+              padding: 5px;
+            }
+            </style>
 </head>
 <body>
     <div id="kvack"> </div> 
@@ -31,57 +40,6 @@
     <div id="productInfo">
         
     </div>
-        <script>
-            function loadList(){
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function() {
-                    if (this.readyState == 4) {
-                        var myArr = JSON.parse(this.responseText);
-                        myFunction(myArr);
-                    }
-                };
-
-                xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
-                xhr.send();
-                function myFunction(arr){
-                    
-                    var out = "";
-                    var i;
-                    for(i = 0; i < arr.length; i++){
-                        out += '<option value="' + arr[i]._id + '">' + arr[i].name + '</option>';
-                    }
-                    document.getElementById("list").innerHTML += out;
-                }
-
-                
-            };
-            loadList();
-            function showProduct(productID){
-                var xhr;
-                var txt;
-                if (productID == ""){
-                    document.getElementById("productInfo").innerHTML = "Please select a product";
-                    return;
-                }
-                xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function(){
-                    if(this.readyState == 4){
-                        var productInformation = JSON.parse(this.responseText);
-                        txt+= "<table border='1'><tr><th>Name</th><th>Price</th><th>Description</th><th>Category</th></tr>";
-                        txt+="<tr><td>"+productInformation.name+"</td><td>"+productInformation.price+"</td><td>"+productInformation.description+"</td><td>"+productInformation.category+"</td></tr>";
-                        txt+="</table>";
-                        
-                        document.getElementById("productInfo").innerHTML = txt;
-                };
-                xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products/'+productID, true);
-                xhr.send();
-                
-                
-            }
-
-        };
-
-        </script>
     
 </body>
 </html>
