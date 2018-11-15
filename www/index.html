@@ -71,12 +71,12 @@
                         txt+="<tr><td>"+productInformation.name+"</td><td>"+productInformation.price+"</td><td>"+productInformation.description+"</td><td>"+productInformation.category+"</td></tr>";
 
                         
-                        
+                        document.getElementById("productInfo").innerHTML = txt;
                 };
                 xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products/'+productID, true);
                 xhr.send();
                 
-                document.getElementById("productInfo").innerHTML = txt;
+                
             }
 
         };
