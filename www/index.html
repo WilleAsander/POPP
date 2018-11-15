@@ -66,47 +66,35 @@
                 xhr.onreadystatechange = function(){
                     if(this.readyState == 4){
                         var productInformation = JSON.parse(this.responseText);
-                        var col = [];
-                        for (var key in productInformation) {
-                            if (col.indexOf(key) === -1) {
-                                col.push(key);
+                        var number_of_rows = productInformation.length;
+                        var k = 0;
+                        var table_body = '<table border="1" id="example"><thead><tr><th>Name</th><th>Price</th><th>Description</th><th>Category</th></tr></thead><tbody>';
+                        for(j in productInformation){
+                            for(i =0;i<productInformation.length;i++){
+                                    table_body+='<tr>';
+                                    table_body +='<td>';
+                                    table_body +=productInformation[k]["name"];
+                                    table_body +='</td>';
+                                
+                                    table_body +='<td>';
+                                    table_body +=productInformation[k].name[i];
+                                    table_body +='</td>';
+                                
+                                    table_body+='</tr>';
                             }
+                            k++;
                         }
-                        var table = document.createElement("table");
-
-                        var tr = table.insertRow(-1);
-
-                        for (var i = 0; i < col.length; i++) {
-                            var th = document.createElement("th");      // TABLE HEADER.
-                            th.innerHTML = col[i];
-                            tr.appendChild(th);
-                        }
+                            table_body+='</tbody></table>';
+                        $('#tableDiv').html(table_body);
+              //display data..........
                         
-
-                        tr = table.insertRow(-1);
-
-                        for (var j = 0; j < col.length; j++) {
-                            var tabCell = tr.insertCell(-1);
-                            tabCell.innerHTML = productInformation;
-                        
-                        }
-
-                        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-                        var divContainer = document.getElementById("showData");
-                        divContainer.innerHTML = "";
-                        divContainer.appendChild(table);
-
-
-                    }
-                    var divContainer = document.getElementById("productInfo");
-                    divContainer.innerHTML = "";
-                    divContainer.appendChild(table);
                 };
                 xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products/'+productID, true);
                 xhr.send();
 
 
             }
+        }
 
         </script>
     
