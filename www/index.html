@@ -52,21 +52,22 @@
                 }
                 document.getElementById("table").innerHTML += out;
             }
-            var newXhr = new XMLHttpRequest();
-            newXhr.onreadystatechange = function(){
-                if (this.readyState == 4){
-                    var deleteArr = JSON.parse(this.responseText);
-                    deleteButton(deleteArr)
-                }
 
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    var myArr = JSON.parse(this.responseText);
+                    deleteFunction(myArr)
+                }
             };
-            newXhr.open('DELETE', 'https://glacial-shore-82418.herokuapp.com/products/:id/delete/', true) 
-            newXhr.send();
-            function deleteButton(deletebutton){
+
+            xhr.open('DELETE', 'https://glacial-shore-82418.herokuapp.com/products/:id/delete', true);
+            xhr.send(); 
+            function deleteFunction(arr){
                 var out = "";
                 var i;
                 for(i = 0; i < arr.length; i++){
-                    out += '<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'/delete">Delete</a>';
+                    out += '<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'/delete">Details</a></td>';
                 }
                 document.getElementById("table").innerHTML += out;
             }
