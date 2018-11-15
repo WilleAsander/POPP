@@ -21,39 +21,37 @@
         </form>
 
     <div id="listBox">
-        <table id="table">
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th></th>
-            </tr>
-            <tr>
-                <td class="content"></td>
-            </tr>
+        <form action="">
+            <select id="list" name="products" onchange="showProduct(this.value)">
+            </select>
             
-        </table>
+        </form>
         <script>
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4) {
-                    var myArr = JSON.parse(this.responseText);
-                    myFunction(myArr);
-                    //deleteFunction(myArr);
-                }
-            };
+            function loadList(){
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4) {
+                        var myArr = JSON.parse(this.responseText);
+                        myFunction(myArr);
+                        //deleteFunction(myArr);
+                    }
+                };
 
-            xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
-            xhr.send();
-            function myFunction(arr){
-                 
-                var out = "";
-                var i;
-                for(i = 0; i < arr.length; i++){
-                    out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td>'
-                    +" "+'<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'">Details</a></tr>';
+                xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
+                xhr.send();
+                function myFunction(arr){
+                    
+                    var out = "";
+                    var i;
+                    for(i = 0; i < arr.length; i++){
+                        out += '<option value="' + arr[i]._id + '>' + arr[i].name + '</option>';
+                    }
+                    document.getElementById("list").innerHTML += out;
                 }
-                document.getElementById("table").innerHTML += out;
-            }
+                loadList();
+        }
+
+
         </script>
     </div>
 </body>
