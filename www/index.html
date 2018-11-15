@@ -58,6 +58,7 @@
             loadList();
             function showProduct(productID){
                 var xhr;
+                var txt;
                 if (productID == ""){
                     document.getElementById("productInfo").innerHTML = "Please select a product";
                     return;
@@ -66,35 +67,19 @@
                 xhr.onreadystatechange = function(){
                     if(this.readyState == 4){
                         var productInformation = JSON.parse(this.responseText);
-                        var number_of_rows = productInformation.length;
-                        var k = 0;
-                        var table_body = '<table border="1" id="example"><thead><tr><th>Name</th><th>Price</th><th>Description</th><th>Category</th></tr></thead><tbody>';
-                        for(j in productInformation){
-                            for(i =0;i<productInformation.length;i++){
-                                    table_body+='<tr>';
-                                    table_body +='<td>';
-                                    table_body +=productInformation[k]["name"];
-                                    table_body +='</td>';
-                                
-                                    table_body +='<td>';
-                                    table_body +=productInformation[k].name[i];
-                                    table_body +='</td>';
-                                
-                                    table_body+='</tr>';
-                            }
-                            k++;
-                        }
-                            table_body+='</tbody></table>';
-                        $('#productInfo').html(table_body);
-              //display data..........
+                        txt+= "<table border='1'><tr><th>Name</th><th>Price</th><th>Description</th><th>Category</th></tr>";
+                        txt+="<tr><td>"+productInformation.name+"</td><td>"+productInformation.price+"</td><td>"+productInformation.description+"</td><td>"+productInformation.category+"</td></tr>";
+
+                        
                         
                 };
                 xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products/'+productID, true);
                 xhr.send();
-
-
+                
+                document.getElementById("productInfo").innerHTML = txt;
             }
-        }
+
+        };
 
         </script>
     
