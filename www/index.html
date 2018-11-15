@@ -23,6 +23,7 @@
     <div id="listBox">
         <form action="">
             <select id="list" name="products" onchange="showProduct(this.value)">
+            <option value="">Select a product...</option>
             </select>
             
         </form>
@@ -58,13 +59,14 @@
             function showProduct(productID){
                 var xhr;
                 if (productID == ""){
-                    document.getElementById("productInfo").innerHTML = "";
+                    document.getElementById("productInfo").innerHTML = "Please select a product";
                     return;
                 }
                 xhr = new XMLHttpRequest();
                 xhr.onreadystatechange = function(){
                     if(this.readyState == 4){
-                        document.getElementById("productInfo").innerHTML = this.responseText;
+                        var productInformation = JSON.parse(this.responseText);
+                        document.getElementById("productInfo").innerHTML = productInformation;
 
                     }
                 };
