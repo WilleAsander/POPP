@@ -33,7 +33,6 @@
                     if (this.readyState == 4) {
                         var myArr = JSON.parse(this.responseText);
                         myFunction(myArr);
-                        //deleteFunction(myArr);
                     }
                 };
 
@@ -48,9 +47,10 @@
                     }
                     document.getElementById("list").innerHTML += out;
                 }
-                loadList();
-        }
 
+                
+            };
+            loadList();
 
         </script>
     </div>
