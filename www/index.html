@@ -38,12 +38,14 @@
                 if (this.readyState == 4) {
                     var myArr = JSON.parse(this.responseText);
                     myFunction(myArr);
+                    //deleteFunction(myArr);
                 }
             };
 
-            xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
-            xhr.send(); 
+            
             function myFunction(arr){
+                xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
+                xhr.send(); 
                 var out = "";
                 var i;
                 for(i = 0; i < arr.length; i++){
@@ -52,7 +54,6 @@
                 }
                 document.getElementById("table").innerHTML += out;
             }
-            
         </script>
     </div>
 </body>
