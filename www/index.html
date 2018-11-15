@@ -42,10 +42,10 @@
                 }
             };
 
-            
+            xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
+            xhr.send();
             function myFunction(arr){
-                xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
-                xhr.send(); 
+                 
                 var out = "";
                 var i;
                 for(i = 0; i < arr.length; i++){
