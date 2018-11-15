@@ -66,7 +66,7 @@
                 xhr.onreadystatechange = function(){
                     if(this.readyState == 4){
                         var productInformation = JSON.parse(this.responseText);
-                        document.getElementById("productInfo").innerHTML = productInformation;
+                        document.getElementById("productInfo").innerHTML = productInformation.name;
 
                     }
                 };
