@@ -27,11 +27,14 @@
                 <th>Price</th>
                 <th></th>
             </tr>
+            <tr>
+                <td class="content"></td>
+            </tr>
             
         </table>
         <script>
             var xhr = new XMLHttpRequest();
-
+            var id ="";
             xhr.onreadystatechange = function() {
                 if (this.readyState == 4) {
                     var myArr = JSON.parse(this.responseText);
@@ -45,11 +48,28 @@
                 var out = "";
                 var i;
                 for(i = 0; i < arr.length; i++){
-                    out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td> </tr>'
-                    +" "+'<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'">Details</a>';
+                    out += '<tr> <td>' + arr[i].name + '</td>' + " " + '<td>' + arr[i].price + '</td>'
+                    +" "+'<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'">Details</a></tr>';
                 }
                 document.getElementById("table").innerHTML += out;
-            }  
+            }
+            xhr.onreadystatechange = function(){
+                if (this.readyState == 4){
+                    var deleteArr = JSON.parse(this.responseText);
+                    deleteButton(deleteArr)
+                }
+
+            };
+            xhr.open('DELETE', 'https://glacial-shore-82418.herokuapp.com/products', true) 
+            xhr.send();
+            function deleteButton(deletebutton){
+                var out = "";
+                var i;
+                for(i = 0; i < arr.length; i++){
+                    out += '<td> <a href="https://glacial-shore-82418.herokuapp.com/products/'+ arr[i]._id+'/delete">Delete</a>';
+                }
+                document.getElementById("table").innerHTML += out;
+            }
         </script>
     </div>
 </body>
