@@ -69,7 +69,7 @@
                         var productInformation = JSON.parse(this.responseText);
                         txt+= "<table border='1'><tr><th>Name</th><th>Price</th><th>Description</th><th>Category</th></tr>";
                         txt+="<tr><td>"+productInformation.name+"</td><td>"+productInformation.price+"</td><td>"+productInformation.description+"</td><td>"+productInformation.category+"</td></tr>";
-                        txt+="</table>"
+                        txt+="</table>";
                         
                         document.getElementById("productInfo").innerHTML = txt;
                 };
