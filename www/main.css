@@ -36,3 +36,19 @@ body {
 .infoinput {
     float: right;
 }
+
+#productInfo table{
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+#productInfo button{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2%;
+}
+#productInfo p{
+    display: block;
+    margin: 0 auto;
+    margin-top: 2%;
+}

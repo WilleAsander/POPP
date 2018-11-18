@@ -6,28 +6,23 @@
     <title>POPP</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script type="application/javascript" src="jquery-3.3.1.min.js"></script>
     <script type="application/javascript" src="main.js"></script>
+    
 </head>
 <body>
         <h1 id="billboard">Welcome! Insert info about product below</h1>
-        <form method="POST" action="/products/create" class="infoform">
-          <label class="infotext">Name:</label><input class="infoinput" type="text" name="name" placeholder="Enter name of product" required><br>
-          <label class="infotext">Description:</label><input class="infoinput" type="text" name="description" placeholder="Enter product description" required><br>
-          <label class="infotext">Category:</label> <input class="infoinput" type="text" name="category" placeholder="Enter product category" required><br>
-          <label class="infotext">Price:</label><input class="infoinput" type="number" name="price" placeholder="Enter price of product" required><br>
-          <input class="infotext"type="submit" value="submit">
+        <form class="infoform" id="infoform">
+          <label class="infotext">Name:</label><input id="nameInput" class="infoinput" type="text" name="name" placeholder="Enter name of product" required><br>
+          <label class="infotext">Description:</label><input id="descInput" class="infoinput" type="text" name="description" placeholder="Enter product description" required><br>
+          <label class="infotext">Category:</label> <input id="categoryInput" class="infoinput" type="text" name="category" placeholder="Enter product category" required><br>
+          <label class="infotext">Price:</label><input id="priceInput" class="infoinput" type="number" name="price" placeholder="Enter price of product" required><br>
+          <button class="infotext" type="submit" onclick="createProduct()">Add Product</button>
         </form>
 
     <div id="listBox" class="infoform">
-        <form action="">
-            <select class="infotext" id="list" name="products" onchange="showProduct(this.value)">
-            <option value="">Select a product...</option>
-            </select>
-            
-        </form>
     </div>
-    <div id="productInfo">
-        
+    <div id="productInfo"> 
     </div>
     
 </body>

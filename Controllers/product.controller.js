@@ -13,12 +13,12 @@ exports.create = function(req,res){
         if (error){
             return next(error);
         }
-        res.redirect('/');
+        res.send('Product created');
     });
 
 
 
-}
+};
 
 exports.list = function(req,res){
      Product.find(function(err, product){
@@ -46,7 +46,7 @@ exports.update = function(req,res){
   exports.delete = function(req,res){
     Product.findByIdAndDelete(req.params.id, {$set: req.body}, function(err, product){
       if (err) return next (err);
-      res.send('Product REMOVED BY FORCE');
+      res.send('Product removed');
     });
   };
 

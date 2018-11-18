@@ -1,46 +1,121 @@
-function loadList(){
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4) {
-            var myArr = JSON.parse(this.responseText);
-            myFunction(myArr);
-        }
+$.ready(loadList());
+
+function createProduct(){
+    $(".infoform").submit(function(event) {
+        event.preventDefault();
+    });
+    var product = {
+        name: $('#nameInput').val(),
+        description: $('#descInput').val(),
+        category: $('#categoryInput').val(),
+        price: $('#priceInput').val()
     };
+    $.ajax({
+        type: 'POST',
+        contentType : "application/json",
+        url: 'products/create',
+        data : JSON.stringify(product),
+        success: function(response){
+            $('#infoform')[0].reset();
+            $('#listBox').empty();
+            loadList();
+            $('#infoform').append('<p>'+response+'</p>');
 
-    xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products', true);
-    xhr.send();
-    function myFunction(arr){
-        
-        var out = "";
-        var i;
-        for(i = 0; i < arr.length; i++){
-            out += '<option value="' + arr[i]._id + '">' + arr[i].name + '</option>';
         }
-        document.getElementById("list").innerHTML += out;
-    }
-
-    
+    });
 };
-loadList();
-function showProduct(productID){
-    var xhr;
-    if (productID == ""){
-        document.getElementById("productInfo").innerHTML = "";
-        return;
-    }
-    xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4){
-            var productInformation = JSON.parse(this.responseText);
-            document.getElementById("productInfo").innerHTML = 
-            "<table><tr><th>Name</th><td>"+productInformation.name+"</td></tr><tr><th>Price</th><td>"+productInformation.price+"</td></tr><tr><th>Description</th><td>"
-            +productInformation.description+"</td></tr><tr><th>Category</th><td>"
-            +productInformation.category+"</td></tr></table>";
 
-        }Price
-    };
-    xhr.open('GET', 'https://glacial-shore-82418.herokuapp.com/products/'+productID, true);
-    xhr.send();
-}
+function loadList(){
+    $.ajax({
+        type: 'GET',
+        url: 'products',
+        success: function(list){
+            var products = list;
+            var $form = $('<form action="" id="listDropDown">');
+            var listItems = '<option selected="selected" value="0">- Select -</option>';
+ 
+            for (var i = 0; i < products.length; i++) {
+                listItems += "<option value='" + products[i]._id + "'>" + products[i].name + "</option>";
+            };
+            var $select = $('<select class="infotext" id="list" name="products"onchange="showProduct(this.value)">').append(
+                listItems
+                
+
+            );
+            $form.append(
+                $select
+            );
+            $('#listBox').append(
+                $form
+            );
+            
+        }
+    });
+};
+
+function showProduct(productID){
+    $.ajax({
+        
+        type: "GET",
+        url: 'products/'+productID,
+        success: function(result){
+            $('#productInfo').empty();
+            var productInformation = result;
+            var $button = $('<button value="'+productID+'"onClick = "deleteProduct(this.value)">');
+            $button.text("Delete");
+            var $table = $('<table>');
+            var $name = $('<tr>').append(
+                $('<th>').text("Name"),
+                $('<td>').text(productInformation.name)
+            );
+            var $price = $('<tr>').append(
+                $('<th>').text("Price"),
+                $('<td>').text(productInformation.price)                   
+            );
+            var $description = $('<tr>').append(
+                $('<th>').text("Description"),
+                $('<td>').text(productInformation.description),
+            );
+            var $category = $('<tr>').append(
+                $('<th>').text("Category"),
+                $('<td>').text(productInformation.category)
+            );
+            $table.append(
+                $name,
+                $price,
+                $description,
+                $category
+            );
+
+
+            $('#productInfo').append(
+                $table,
+                $button
+            );
+            
+               
+        }
+    });
+};
+
+function deleteProduct(productID){
+    $.ajax({
+        type: "DELETE",
+        url: 'products/'+productID+'/delete',
+        success: function(result){
+            $('#productInfo').empty();
+            $("#productInfo").append('<p>'+result+'</p>');
+            $('#listBox').empty();
+            loadList();
+        }
+    });
+};
+
+
+
+
+
+
+
 
     
