@@ -6,8 +6,8 @@ function createProduct(){
     });
     var product = {
         name: $('#nameInput').val(),
-        description: $('#descInput').val(),
-        category: $('#categoryInput').val(),
+        description: $('textarea#decInput').val(),
+        category: $("#categoryInput option:selected").text(),
         price: $('#priceInput').val()
     };
     $.ajax({
@@ -17,12 +17,13 @@ function createProduct(){
         data : JSON.stringify(product),
         success: function(response){
             $('#infoform')[0].reset();
-            $('#listBox').empty();
+            $('p').remove('#infoform');
             loadList();
-            $('#infoform').append('<p>'+response+'</p>');
+            $('#infoform').append('<p id="response">'+response+'</p>');
 
         }
     });
+
 };
 
 function loadList(){
@@ -33,11 +34,29 @@ function loadList(){
             var products = list;
             var $form = $('<form action="" id="listDropDown">');
             var listItems = '<option selected="selected" value="0">- Select -</option>';
- 
-            for (var i = 0; i < products.length; i++) {
-                listItems += "<option value='" + products[i]._id + "'>" + products[i].name + "</option>";
+            var lookup = {};
+            var result = [];
+            var optgroup;
+            for (var item, i = 0; item = products[i++];) {
+                var category = item.category;
+
+                if (!(category in lookup)) {
+                lookup[category] = 1;
+                result.push(category);
+                }
             };
-            var $select = $('<select class="infotext" id="list" name="products"onchange="showProduct(this.value)">').append(
+            for (var j = 0; j < result.length; j++){
+                optgroup = result[j];
+                listItems += '<optgroup label="'+optgroup+'">'
+                for (var i = 0; i < products.length; i++) {
+                    if(products[i].category == optgroup){
+                        listItems += "<option value='" + products[i]._id + "'>" + products[i].name + "</option>";
+                    }
+                };
+                listItems += '</optgroup>'
+            };
+            listItems +='</div>'
+            var $select = $('<select id="list" class="form-control" data-style="btn-danger" onchange="showProduct(this.value)">').append(
                 listItems
                 
 
@@ -61,7 +80,7 @@ function showProduct(productID){
         success: function(result){
             $('#productInfo').empty();
             var productInformation = result;
-            var $button = $('<button value="'+productID+'"onClick = "deleteProduct(this.value)">');
+            var $button = $('<button value="'+productID+'"onClick = "deleteProduct(this.value)" class="btn-danger">');
             $button.text("Delete");
             var $table = $('<table>');
             var $name = $('<tr>').append(
